@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash 
 
 echo "Welcome to snake and ladder"
 
@@ -9,11 +9,13 @@ readonly MOVE_AHEAD=1
 readonly MOVE_BACK=2
 
 currentPosition=START_POSITION
+countDieRoll=0
 
 while (( $currentPosition != $WINNING_POSITION ))
 do
 
 	dieRoll=$((RANDOM%6+1))
+	countDieRoll=$(($countDieRoll+1))
 
 	echo "you got $dieRoll"
 
@@ -32,6 +34,7 @@ do
 			 currentPosition=$(($currentPosition+$dieRoll))
 		fi
 
+
 	elif [[ $option -eq $MOVE_BACK ]]
 	then
 		currentPosition=$(($currentPosition-$dieRoll))
@@ -42,5 +45,7 @@ do
 
 	fi
 
+	 echo "Current position is $currentPosition"
 done
 
+echo "Die was rolled $countDieRoll times"
